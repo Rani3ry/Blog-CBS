@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Blog Projeto Final
 
-## Getting Started
+Blog em Next.js com painel administrativo, Prisma + MySQL e upload de imagens via Cloudinary.
 
-First, run the development server:
+## Rotas
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- `/` - lista posts publicados
+- `/blog/[slug]` - post publico
+- `/admin/posts` - painel protegido por Basic Auth
+- `/admin/posts/new` - criar post
+- `/admin/posts/[id]/edit` - editar post
+
+## Variaveis de ambiente
+
+Configure localmente em `.env` e na Vercel em **Project Settings > Environment Variables**:
+
+```env
+DATABASE_URL="mysql://USER:PASSWORD@HOST:PORT/defaultdb?ssl-mode=REQUIRED"
+CLOUDINARY_URL="cloudinary://API_KEY:API_SECRET@CLOUD_NAME"
+ADMIN_USERNAME="admin"
+ADMIN_PASSWORD="troque-por-uma-senha-forte"
+ADMIN_SESSION_TOKEN="troque-por-um-token-aleatorio-longo"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Desenvolvimento
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Banco de dados
 
-## Learn More
+Gerar o Prisma Client:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run prisma:generate
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Aplicar migrations em desenvolvimento:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run prisma:migrate
+```
 
-## Deploy on Vercel
+## Deploy na Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Crie o repositorio no GitHub.
+2. Suba o projeto sem o arquivo `.env`.
+3. Importe o repositorio na Vercel.
+4. Cadastre as variaveis de ambiente listadas acima.
+5. Use o comando de build padrao do projeto:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run build
+```
+
+O build ja executa `prisma generate` antes do `next build`.

@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model User {
+  id    Int    @id @default(autoincrement()) @map("Id")
+  nome  String @map("Nome")
+  email String @unique @map("Email")
+
+  @@map("user")
+}
+
+model Post {
+  id        Int      @id @default(autoincrement()) @map("Id")
+  title     String   @map("Titulo")
+  slug      String   @unique @map("Slug")
+  excerpt   String   @db.Text @map("Resumo")
+  content   String   @db.Text @map("Conteudo")
+  imageUrl  String?  @db.Text @map("ImagemUrl")
+  published Boolean  @default(false) @map("Publicado")
+  createdAt DateTime @default(now()) @map("CriadoEm")
+  updatedAt DateTime @updatedAt @map("AtualizadoEm")
+
+  @@map("posts")
+}
