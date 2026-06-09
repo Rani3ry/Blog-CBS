@@ -70,7 +70,8 @@ A aplicação conta com páginas públicas para leitura dos artigos e um painel 
 ## 🧪 Como Testar
 
 1. Acesse a página do Blog pelo link: https://blog-cbs.vercel.app/
-2. Entre no painel administrativo com as credenciais admin: admin / senha: w48GmuGtHRIPzbV0OazykKUwLq5ZyJN.
+2. Entre no painel administrativo com as credenciais de demonstração
+   admin: admin / senha: w48GmuGtHRIPzbV0OazykKUwLq5ZyJN.
 3. Crie um novo post com título, resumo, conteúdo e imagem.
 4. Marque o post como publicado.
 5. Volte para a página inicial e confira o post publicado.
